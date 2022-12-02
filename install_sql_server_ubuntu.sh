@@ -8,12 +8,12 @@
 
 
 # Password for the SA user (required)
-MSSQL_SA_PASSWORD='Demetra@2022'
+MSSQL_SA_PASSWORD=Demetra@2022
 
 # Product ID of the version of SQL server you're installing
 # Must be evaluation, developer, express, web, standard, enterprise, or your 25 digit product key
 # Defaults to developer
-MSSQL_PID='standard'
+MSSQL_PID='evaluation'
 
 # Install SQL Server Agent (recommended)
 SQL_INSTALL_AGENT='y'
@@ -32,6 +32,7 @@ then
 fi
 
 echo Adding Microsoft repositories...
+apt install software-properties-common -y
 sudo curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
 repoargs="$(curl https://packages.microsoft.com/config/ubuntu/20.04/mssql-server-2019.list)"
 sudo add-apt-repository "${repoargs}"
@@ -119,5 +120,9 @@ then
     -P $MSSQL_SA_PASSWORD \
     -Q "CREATE LOGIN [$SQL_INSTALL_USER] WITH PASSWORD=N'$SQL_INSTALL_USER_PASSWORD', DEFAULT_DATABASE=[master], CHECK_EXPIRATION=ON, CHECK_POLICY=ON; ALTER SERVER ROLE [sysadmin] ADD MEMBER [$SQL_INSTALL_USER]"
 fi
+
+sudo /opt/mssql/bin/mssql-conf set sqlagent.enabled true
+
+sudo systemctl restart mssql-server
 
 echo Done!
