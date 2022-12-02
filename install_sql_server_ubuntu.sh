@@ -8,12 +8,12 @@
 
 
 # Password for the SA user (required)
-MSSQL_SA_PASSWORD='<YourStrong!Passw0rd>'
+MSSQL_SA_PASSWORD='Demetra@2022'
 
 # Product ID of the version of SQL server you're installing
 # Must be evaluation, developer, express, web, standard, enterprise, or your 25 digit product key
 # Defaults to developer
-MSSQL_PID='evaluation'
+MSSQL_PID='standard'
 
 # Install SQL Server Agent (recommended)
 SQL_INSTALL_AGENT='y'
