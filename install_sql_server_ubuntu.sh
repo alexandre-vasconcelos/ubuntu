@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #yes
-#others
+#others...
 # Author: Alexandre Vasconcelos
 # Bash:  version 5.1.4(1)-release (x86_64-pc-linux-gnu)
 # O.S: Ubuntu 20.4
